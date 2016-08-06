@@ -19,6 +19,9 @@ import Util.MyToast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AlarmManager alarmManager;
+    private Calendar calendar = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +36,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnAddAlarmClicked(View view){
 
-        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(System.currentTimeMillis());
-
+        calendar.setTimeInMillis(System.currentTimeMillis());
 
         new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);    //创建Intent对象
-//                PendingIntent pi = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);    //创建PendingIntent
-                //alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pi);        //设置闹钟
-//                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pi);        //设置闹钟，当前时间就唤醒
-//        MyToast.showShortText(calendar.get(Calendar.HOUR_OF_DAY) + ": " + calendar.get(Calendar.MINUTE) );
+                Calendar c=Calendar.getInstance();//获取日期对象
+                c.setTimeInMillis(System.currentTimeMillis());        //设置Calendar对象
+                c.set(Calendar.HOUR, hourOfDay);        //设置闹钟小时数
+                c.set(Calendar.MINUTE, minute);            //设置闹钟的分钟数
+                c.set(Calendar.SECOND, 0);                //设置闹钟的秒数
+                c.set(Calendar.MILLISECOND, 0);            //设置闹钟的毫秒数
+                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);    //创建Intent对象
+                PendingIntent pi = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);    //创建PendingIntent
+                alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pi);        //设置闹钟
+                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pi);        //设置闹钟，当前时间就唤醒
+        MyToast.showShortText(hourOfDay + ":" + minute);
             }
         },calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show();
     }
