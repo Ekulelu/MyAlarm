@@ -19,7 +19,7 @@
                 android:id="@+id/btn_plus_alarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/plus"
+                android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
                 android:layout_alignParentStart="true"
                 android:contentDescription="@string/add_alarm"
                 />
@@ -35,22 +35,22 @@
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/text_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alarmMode"
         android:layout_below="@+id/activity_main_toolbar"
         android:layout_alignParentStart="true"
-        android:layout_margin="10dp"
-
+        android:layout_marginTop = "10dp"
+        android:layout_marginStart = "10dp"
         android:textSize="25dp" />
 
     <RadioGroup
         android:id="@+id/alarmModeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textView1"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_toEndOf="@+id/text_mode"
+        android:layout_alignTop="@+id/text_mode"
         android:orientation="horizontal"
        >
 
@@ -80,6 +80,44 @@
             android:id="@+id/radio_button_month" />
 
     </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        android:id="@+id/text_time"
+        android:layout_below="@+id/text_mode"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15:58"
+        android:id="@+id/textView_time"
+        android:layout_alignTop="@+id/text_time"
+        android:layout_toEndOf="@+id/text_time"
+        android:layout_marginStart="20dp"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:id="@+id/text_date"
+        android:layout_below="@+id/textView_time"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart = "10dp"/>
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/imageButton"
+        android:layout_alignTop="@+id/text_date"
+        android:layout_alignStart="@+id/textView_time"
+        android:src="@android:drawable/ic_input_add" />
 
 
 </RelativeLayout>

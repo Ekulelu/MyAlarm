@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.widget.TextClock;
 
 import Util.MyLog;
 import Util.MyToast;
