@@ -39,4 +39,40 @@ public class AlarmModel {
         this.airPlaneMode = airPlaneMode;
     }
 
+    public AlarmModel(){
+
+    }
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public ArrayList<Calendar> getAlarmTimes() {
+        return alarmTimes;
+    }
+
+    public void setAlarmTimes(ArrayList<Calendar> alarmTimes) {
+        this.alarmTimes = alarmTimes;
+    }
+
+    public int getAlarmMode() {
+        return alarmMode;
+    }
+
+    public void setAlarmMode(int alarmMode) {
+        this.alarmMode = alarmMode;
+    }
+
+    public int getAirPlaneMode() {
+        return airPlaneMode;
+    }
+
+    public void setAirPlaneMode(int airPlaneMode) {
+        this.airPlaneMode = airPlaneMode;
+    }
 }

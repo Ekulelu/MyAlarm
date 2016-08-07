@@ -2,6 +2,7 @@
     <string name="app_name">MyAlarm</string>
     <string name="title">闹铃</string>
     <string name="add_alarm">添加闹铃</string>
+    <string name="back">返回</string>
     <string name="alarmMode">模式</string>
     <string name="time">时间</string>
     <string name="date">日期</string>

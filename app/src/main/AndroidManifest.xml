@@ -10,19 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name=".AddAlarmActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".AlarmActivity" />
 
         <receiver
             android:name=".AlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".AddAlarmActivity"></activity>
+
     </application>
 
 </manifest>
