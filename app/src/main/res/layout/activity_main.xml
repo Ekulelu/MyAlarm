@@ -21,10 +21,10 @@
                  android:id="@+id/btn_plus_alarm"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:src="@android:drawable/ic_input_add"
+                 android:src="@drawable/add_white2"
                  android:layout_alignParentStart="true"
                  android:contentDescription="@string/add_alarm"
-                 />
+                 android:background="#00ffffff" />
 
              <TextView
                  android:layout_width="wrap_content"
@@ -37,11 +37,12 @@
                  android:id="@+id/btn_delete_alarm"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:src="@android:drawable/ic_menu_delete"
+                 android:src="@drawable/trash_red"
                  android:layout_centerVertical="true"
                  android:layout_alignParentRight="true"
                  android:layout_marginEnd="15dp"
-                 android:contentDescription="@string/add_alarm"/>
+                 android:contentDescription="@string/add_alarm"
+                 android:background="#00000000" />
          </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
