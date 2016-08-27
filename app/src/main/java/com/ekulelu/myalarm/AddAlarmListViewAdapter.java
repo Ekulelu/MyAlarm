@@ -15,6 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
+@Deprecated
 /**
  * Created by Ekulelu on 16/8/7.
  */
@@ -50,7 +52,7 @@ public class AddAlarmListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
 
-            convertView = mInflater.inflate(R.layout.add_alarm_list_cell,null);
+            convertView = mInflater.inflate(R.layout.add_alarm_list_item,null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
@@ -68,7 +70,7 @@ public class AddAlarmListViewAdapter extends BaseAdapter {
      */
     public static class ViewHolder {
 
-        @BindView(R.id.add_alarm_list_item_Tv_time)  TextView mTvTime;
+        @BindView(R.id.add_alarm_list_item_Tv_date)  TextView mTvTime;
 
         @BindView(R.id.add_alarm_list_item_ImaBtn_delete) ImageButton mImgBtnDel;
 

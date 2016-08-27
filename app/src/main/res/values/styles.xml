@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="week_btn" >
+        <item name="android:background">@drawable/week_btn</item>
+        <item name="android:button">@null</item>
+    </style>
+
 </resources>

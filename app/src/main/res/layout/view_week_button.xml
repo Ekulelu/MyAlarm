@@ -1,27 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="0dp"
+    android:gravity="top"
+    android:background="#ff2fffff">
     
-            <ImageButton
-                android:id="@+id/btn_add_alarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/delete"
-                android:layout_alignParentEnd="true"
-                android:contentDescription="@string/add_alarm"
-                android:background="#00ffffff" />
-        
 
-
-  
-
-
-  
+    <CheckBox
+        android:id="@+id/week_btn_one"
+        style="@style/week_btn"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/one"
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:checked="false" />
 
 
 
+    <CheckBox
+        android:id="@+id/week_btn_two"
+        style="@style/week_btn"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/two"
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        />
 
-</RelativeLayout>
+    <CheckBox
+        style="@style/week_btn"
+        android:id="@+id/week_btn_three"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/three"
+
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical" />
+
+    <CheckBox
+        android:id="@+id/week_btn_four"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/four"
+        style="@style/week_btn"
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical" />
+
+    <CheckBox
+        android:id="@+id/week_btn_five"
+        style="@style/week_btn"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/five"
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical" />
+
+    <CheckBox
+        android:id="@+id/week_btn_six"
+        style="@style/week_btn"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/six"
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical" />
+
+    <CheckBox
+        android:id="@+id/week_btn_seven"
+        style="@style/week_btn"
+        android:layout_width="@dimen/week_btn_width"
+        android:layout_height="@dimen/week_btn_height"
+        android:text="@string/seven"
+        android:textSize="@dimen/week_btn_text_size"
+        android:textAlignment="center"
+        android:gravity="center_vertical" />
+
+
+</LinearLayout>

@@ -5,6 +5,9 @@ import android.widget.Toast;
 /**Toast used ContextUtil for short call of makeText
  * Created by aahu on 2016/8/4 0004.
  */
+/**Toast used ContextUtil for short call of makeText
+ * Created by aahu on 2016/8/4 0004.
+ */
 public class MyToast {
     private MyToast() {
         /* cannot be instantiated */
@@ -24,9 +27,40 @@ public class MyToast {
      * @param message
      * @param duration
      */
-    public static void show(CharSequence message, int duration)
+    public static void show(int message, int duration)
     {
-        Toast.makeText(ContextUtil.getInstance(), message, duration).show();
+        Toast.makeText(ContextUtil.getInstance(), "" + message, duration).show();
     }
 
+    public static void showShortText(int string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string,Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showLongText(int string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string, Toast.LENGTH_LONG).show();
+    }
+
+    public static void showShortText(long string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string,Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showLongText(long string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string, Toast.LENGTH_LONG).show();
+    }
+
+    public static void showShortText(double string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string,Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showLongText(double string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string, Toast.LENGTH_LONG).show();
+    }
+
+    public static void showShortText(boolean string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string,Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showLongText(boolean string) {
+        Toast.makeText(ContextUtil.getInstance(), "" + string, Toast.LENGTH_LONG).show();
+    }
 }

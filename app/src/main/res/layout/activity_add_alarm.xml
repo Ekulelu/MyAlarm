@@ -20,8 +20,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:contentDescription="@string/back"
-                android:src="@drawable/back"
-                android:background="#00ffffff"
+                android:src="@mipmap/back"
+                android:background="@color/transparent"
                 android:layout_centerVertical="true"
                 />
 
@@ -42,8 +42,8 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/add_alarm"
-                android:background="#00ffffff"
-                android:src="@drawable/ok"
+                android:background="@color/transparent"
+                android:src="@mipmap/ok"
                  />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
@@ -104,10 +104,20 @@
         android:layout_marginStart="30dp"
         android:layout_centerHorizontal="true"
         android:textSize="45sp" />
+
+    <com.ekulelu.myalarm.EKWeekButtonGroup
+        android:id="@+id/week_btn_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_time"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_time">
+        android:layout_below="@+id/week_btn_group">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,22 +130,28 @@
             android:layout_height="wrap_content"
             android:id="@+id/image_button_add_date"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
             android:layout_alignTop="@+id/text_date"
             android:layout_toEndOf="@+id/text_date"
-            android:src="@drawable/add"
-            android:background="#00000000" />
+            android:src="@mipmap/add"
+            android:background="@color/transparent" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_date">
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView_date"
+            <!--<ListView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/listView_date"-->
 
-                />
+                <!--/>-->
+            <com.ekulelu.myalarm.AddAlarmRecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_alarm_recycler_view">
+
+            </com.ekulelu.myalarm.AddAlarmRecyclerView>
 
         </RelativeLayout>
 

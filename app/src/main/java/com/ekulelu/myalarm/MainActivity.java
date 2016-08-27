@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setTitle("");
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 //        setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_add_alarm);
+        setContentView(R.layout.activity_main);
         this.initActionBar();
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
