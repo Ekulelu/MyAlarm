@@ -139,7 +139,7 @@ public class CustomCalendarView extends View {
             int row     =  (day + mWeekNumber - 1) / 7;
             mDays[row][column] = day + 1;
             int startX = (int) (mColumnSize * column + (mColumnSize - mPaint.measureText(dayStr)) / 2);
-            int startY = (int) (mRowSize * row + mRowSize / 2 - (mPaint.ascent() + mPaint.descent()) / 2);
+            int startY = (int) (mRowSize * row + mRowSize / 2 - (mPaint.ascent() + mPaint.descent()) / 2) + 10;
             int bitmapX = mColumnSize * column + (mColumnSize - mBgOptBitmap.getWidth()) / 2 - 1;
             int bitmapY = mRowSize * row + (mRowSize - mBgOptBitmap.getHeight()) / 2 - 10;
 

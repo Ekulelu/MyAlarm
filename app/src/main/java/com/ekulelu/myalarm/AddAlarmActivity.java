@@ -1,21 +1,24 @@
 package com.ekulelu.myalarm;
 
-import android.app.AlarmManager;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import Util.CustomCalendarView;
 import Util.EKRecyclerView;
@@ -28,8 +31,12 @@ import butterknife.OnClick;
 public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,
         DatePickerDialog.OnDateSetListener, EKRecyclerView.OnItemClickLitener,TimePickerDialog.OnTimeSetListener{
     public static final String ALARM_MODEL = "ALARM_MODEL";
-    public static int DATE_DIALOG_MODE_ADD = 0;
-    public static int DATE_DIALOG_MODE_MODIFY = 1;
+    public static final String CREATE_FLAG = "CREATE_FLAG";
+    public static final int DATE_DIALOG_MODE_ADD = 0;
+    public static final int DATE_DIALOG_MODE_MODIFY = 1;
+    public static final int CREATE_FLAG_ADD = 0;
+    public static final int CREATE_FLAG_MODIFY = 1;
+
 
     @BindView(R.id.add_alarm_recycler_view)
     AddAlarmRecyclerView mRecyclerView;
@@ -52,7 +59,22 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
     @BindView(R.id.calendar_view)
     CustomCalendarView mCalendarView;
 
+    @BindView(R.id.switch_sound)
+    Switch mSwSound;
+
+    @BindView(R.id.switch_vibrate)
+    Switch mSwVibrate;
+
+    @BindView(R.id.img_btn_air_mode)
+    ImageButton mImgBtnAirMode;
+
+    @BindView(R.id.edit_text_tag)
+    EditText mEditTextTag;
+
     private AlarmModel mAlarmModel;
+
+    //这个activity创建是用来添加闹铃还是修改闹铃
+    private int mCreateFlag = CREATE_FLAG_ADD;
 
     private DatePickerDialog mDatePickerDialog;
 
@@ -71,6 +93,8 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
         if (mAlarmModel == null) {
             mAlarmModel = getData();
         }
+
+        mCreateFlag = getIntent().getIntExtra(CREATE_FLAG, CREATE_FLAG_ADD);
 
         Calendar c = Calendar.getInstance();
         mDatePickerDialog = new DatePickerDialog(this, this,c.get(Calendar.YEAR),c.get(Calendar.MONTH),
@@ -171,6 +195,7 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
 
     }
 
+    //不同模式的RadioButton回调方法
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
@@ -180,6 +205,7 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
                 mTvDate.setVisibility(View.VISIBLE);
                 mRecyclerView.setVisibility(View.VISIBLE);
                 mAlarmModel.setAlarmMode(AlarmModel.ONCE);
+                mCalendarView.setVisibility(View.GONE);
                 break;
             case R.id.radio_button_several:
                 mImgBtnAddDate.setVisibility(View.VISIBLE);
@@ -187,6 +213,7 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
                 mTvDate.setVisibility(View.VISIBLE);
                 mRecyclerView.setVisibility(View.VISIBLE);
                 mAlarmModel.setAlarmMode(AlarmModel.SEVERAL);
+                mCalendarView.setVisibility(View.GONE);
                 break;
             case R.id.radio_button_week:
                 mImgBtnAddDate.setVisibility(View.GONE);
@@ -214,7 +241,7 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
         ArrayList<EKDate> dates = new ArrayList<EKDate>();
         dates.add(new EKDate());
         mAlarmModel = new AlarmModel(dates,AlarmModel.ONCE,AlarmModel.AIRPLANE_MODE_DONOTHING);
-        mAlarmModel.setmMessage("第一次设闹铃,好紧张啊");
+        mAlarmModel.setMessage("第一次设闹铃,好紧张啊");
 
 
         return mAlarmModel;
@@ -237,8 +264,29 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
         mTimePickerDialog.show();
     }
 
+    //飞行模式图标按下回调方法
+    @OnClick(R.id.img_btn_air_mode) void imgBtnAirModeClicked(View view) {
+        int newAirMode = mAlarmModel.getAirPlaneMode() + 1;
+        if (newAirMode == 3) {
+            newAirMode = 0;
+        }
+        mAlarmModel.setAirPlaneMode(newAirMode);
+        switch (newAirMode){
+            case AlarmModel.AIRPLANE_MODE_DONOTHING:
+                mImgBtnAirMode.setImageResource(R.mipmap.air_mode_keep);
+                break;
+            case AlarmModel.AIRPLANE_MODE_OFF:
+                mImgBtnAirMode.setImageResource(R.mipmap.air_mode_off);
+                break;
+            case AlarmModel.AIRPLANE_MODE_ON:
+                mImgBtnAirMode.setImageResource(R.mipmap.air_mode_on);
+                break;
+            default:
+        }
+    }
+
     //完成按钮被按下
-    @OnClick(R.id.btn_add_alarm) void addAlarm(View view) {
+    @OnClick(R.id.btn_add_alarm_ok) void addAlarm(View view) {
         switch (mAlarmModel.getAlarmMode()) {
             case AlarmModel.ONCE:
                 MyLog.e("--ok, once" + mAlarmModel.getmAlarmDates().get(0).getMonth() + "-" +
@@ -249,12 +297,41 @@ public class AddAlarmActivity extends AppCompatActivity implements RadioGroup.On
                 MyLog.e("---ok,several");
                 break;
             case AlarmModel.EVERY_WEEK:
+                int weekFlag = mWeekButtonGroup.getCheckBtnFlag();
+                if (0 == weekFlag) {
+                    MyToast.showShortText(getString(R.string.no_day_of_week_selected));
+                    return;
+                }
                 MyLog.e("---ok,week");
+                mAlarmModel.setmDaysOfWeek(weekFlag);
                 break;
             case AlarmModel.EVERY_MONTH:
+                List<String> arrayList = mCalendarView.getSelectedDates();
+                if (arrayList.size() == 0) {
+                    MyToast.showShortText(getString(R.string.no_day_of_month_selected));
+                    return;
+                }
+                mAlarmModel.setEveryMonthDatesList(arrayList);
                 MyLog.e("---ok, month");
                 break;
             default:
         }
+        mAlarmModel.setSound(mSwSound.isChecked());
+        mAlarmModel.setVibrate(mSwVibrate.isChecked());
+        mAlarmModel.setMessage(mEditTextTag.getText().toString());
+
+        EventBus.getDefault().post(mAlarmModel);
+
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.putExtra(CREATE_FLAG, mCreateFlag);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable(ALARM_MODEL, mAlarmModel);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+        finish();
+    }
+
+    @OnClick(R.id.btn_add_alarm_back) void btnBackClicked(View view) {
+        finish();
     }
 }

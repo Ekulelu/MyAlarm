@@ -14,4 +14,8 @@
     <string name="six">五</string>
     <string name="seven">六</string>
     <string name="tag_text">标签</string>
+    <string name="vibrate_text">振动</string>
+    <string name="sound_text">声音</string>
+    <string name="no_day_of_week_selected">没有选中一周的某一天</string>
+    <string name="no_day_of_month_selected">没有选中月的某一天</string>
 </resources>

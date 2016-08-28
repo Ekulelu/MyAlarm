@@ -108,6 +108,7 @@ public class EKWeekButtonGroup extends FrameLayout implements View.OnClickListen
                 break;
             default:
         }
+
 //        MyLog.e("-----" + mCheckBtnFlag);
     }
 }

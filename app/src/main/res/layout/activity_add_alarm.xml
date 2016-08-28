@@ -16,15 +16,16 @@
             android:layout_height="wrap_content"
             android:paddingEnd="5dp"   >
             <ImageButton
-                android:id="@+id/btn_back_alarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_add_alarm_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentStart="true"
+                android:layout_marginStart="-10dp"
                 android:contentDescription="@string/back"
                 android:src="@mipmap/back"
                 android:background="@color/transparent"
                 android:layout_centerVertical="true"
-                />
+                android:scaleType="centerInside" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,15 +39,16 @@
 
                 />
             <ImageButton
-                android:id="@+id/btn_add_alarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_add_alarm_ok"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/add_alarm"
                 android:background="@color/transparent"
                 android:layout_marginEnd="10dp"
                 android:src="@mipmap/ok"
+                android:scaleType="centerInside"
                  />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
@@ -155,35 +157,103 @@
             </com.ekulelu.myalarm.AddAlarmRecyclerView>
 
         </RelativeLayout>
-
+        <Util.CustomCalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:layout_below="@+id/text_view_date"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/calendar_bg"
+            />
 
     </RelativeLayout>
 
-    <Util.CustomCalendarView
-        android:id="@+id/calendar_view"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:layout_below="@id/date_layout"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/calendar_bg"
-         />
+
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tag_text"
-            android:textSize="@dimen/tag_text_size"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"/>
-        <EditText
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/tag_bg" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageButton
+                android:id="@+id/img_btn_air_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/air_mode_keep"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="50dp"
+                android:background="@color/transparent"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vibrate_text"
+                        android:textSize="@dimen/tag_text_size"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"/>
+                    <Switch
+                        android:id="@+id/switch_vibrate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sound_text"
+                        android:textSize="@dimen/tag_text_size"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"/>
+                    <Switch
+                        android:id="@+id/switch_sound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tag_text"
+                android:textSize="@dimen/tag_text_size"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"/>
+            <EditText
+                android:id="@+id/edit_text_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tag_bg"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 

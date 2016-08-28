@@ -1,15 +1,17 @@
 package com.ekulelu.myalarm;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by aahu on 2016/8/6 0006.
  */
-public class AlarmModel {
+public class AlarmModel implements Serializable{
     //对飞行模式的设置
     public static final int AIRPLANE_MODE_DONOTHING = 0;
     public static final int AIRPLANE_MODE_ON = 1;
@@ -30,14 +32,18 @@ public class AlarmModel {
     private String mMessage;
     //选中的周几,用在每周循环模式
     private int mDaysOfWeek;
-    //日期,可能有多个
+    //日期,可能有多个,用在ONCE和SEVERAL模式
     private ArrayList<EKDate> mAlarmDates;
+    //日期,用在每月循环模式
+    private List<String> mEveryMonthDatesList;
     //重复模式
     private int mAlarmMode;
     //对飞行模式的设置
     private int mAirPlaneMode;
 
+    private boolean mSound = true;
 
+    private boolean mVibrate = true;
 
     public AlarmModel(String message, ArrayList<EKDate> alarmDates, int alarmMode, int airPlaneMode){
         this(-1, -1, message, alarmDates, -1, alarmMode, airPlaneMode);
@@ -80,7 +86,7 @@ public class AlarmModel {
         return mMessage;
     }
 
-    public void setmMessage(String mMessage) {
+    public void setMessage(String mMessage) {
         this.mMessage = mMessage;
     }
 
@@ -132,7 +138,31 @@ public class AlarmModel {
         this.mDaysOfWeek = mDaysOfWeek;
     }
 
-//    public boolean containDay(EKDate date){
+    public boolean isSound() {
+        return mSound;
+    }
+
+    public void setSound(boolean mSound) {
+        this.mSound = mSound;
+    }
+
+    public boolean isVibrate() {
+        return mVibrate;
+    }
+
+    public void setVibrate(boolean mVibrate) {
+        this.mVibrate = mVibrate;
+    }
+
+    public List<String> getEveryMonthDatesList() {
+        return mEveryMonthDatesList;
+    }
+
+    public void setEveryMonthDatesList(List<String> mEveryMonthDatesList) {
+        this.mEveryMonthDatesList = mEveryMonthDatesList;
+    }
+
+    //    public boolean containDay(EKDate date){
 //        for (EKDate c: mAlarmDates ) {
 //            if (isEqualCalendar(c, date)) {
 //                return true;
