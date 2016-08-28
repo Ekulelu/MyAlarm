@@ -110,6 +110,10 @@ public abstract class EKRecyclerView extends RecyclerView{
         this.getAdapter().notifyItemRangeChanged(positionStart, itemCount);
     }
 
+    public void updateAllItems() {
+        getAdapter().notifyItemRangeChanged(0,getItemCount());
+    }
+
 
     /**
      * An Adapter for EKRecyclerView, and this adapter should be used with the EKViewHolder or

@@ -38,29 +38,35 @@ public class AddAlarmRecyclerView extends EKRecyclerView {
 
     @Override
     public int getItemCount() {
-        return mAlarmModel.getAlarmTimes().size();
+        if (mAlarmModel.getAlarmMode() == AlarmModel.ONCE) {
+            return 1;
+        }
+        return mAlarmModel.getmAlarmDates().size();
     }
 
     @Override
     public void bindDataToView(ViewHolder viewHolder, final int position) {
-        Calendar calendar = mAlarmModel.getAlarmTimes().get(position);
-        int month = calendar.get(Calendar.MONTH) + 1;  //因为从0开始算起
-        int date = calendar.get(Calendar.DAY_OF_MONTH);
+        EKDate ekDate = mAlarmModel.getmAlarmDates().get(position);
+        int year = ekDate.getYear();
+        int month = ekDate.getMonth() + 1;  //因为从0开始算起
+        int date = ekDate.getDateOfMonth();
         final AddAlarmRecyclerViewHolder holder = (AddAlarmRecyclerViewHolder) viewHolder;
-        String strDate = month + " - " + date;
+        String strDate = year + " - " + month + " - " + date;
         holder.mTvDate.setText(strDate);
         holder.mImgBtnDel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAlarmModel.getAlarmTimes().remove(holder.getLayoutPosition());
+                mAlarmModel.getmAlarmDates().remove(holder.getLayoutPosition());
                 AddAlarmRecyclerView.this.removeItem(holder.getLayoutPosition());
-                if (mAlarmModel.getAlarmTimes().size() == 1) {
+                if (mAlarmModel.getmAlarmDates().size() == 1) {
                     AddAlarmRecyclerView.this.getAdapter().notifyItemChanged(0,null);
                 }
             }
         });
-        if (mAlarmModel.getAlarmTimes().size() <= 1) {
+        if (mAlarmModel.getmAlarmDates().size() <= 1) {
             holder.mImgBtnDel.setVisibility(INVISIBLE);
+        } else {
+            holder.mImgBtnDel.setVisibility(VISIBLE);
         }
     }
 
@@ -68,7 +74,7 @@ public class AddAlarmRecyclerView extends EKRecyclerView {
      * 给外部添加日期后调用刷新
      */
     public void addDate() {
-        addItem(mAlarmModel.getAlarmTimes().size() - 1);
+        addItem(mAlarmModel.getmAlarmDates().size() - 1);
         getAdapter().notifyItemChanged(0,null); //确保更新了第一个item
     }
 

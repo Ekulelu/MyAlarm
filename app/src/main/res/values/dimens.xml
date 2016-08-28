@@ -5,5 +5,5 @@
     <dimen name="week_btn_width">80px</dimen>
     <dimen name="week_btn_height">80px</dimen>
     <dimen name="week_btn_text_size">20sp</dimen>
-
+    <dimen name="tag_text_size">20sp</dimen>
 </resources>

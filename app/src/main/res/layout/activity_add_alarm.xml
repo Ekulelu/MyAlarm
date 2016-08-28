@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ekulelu.myalarm.AddAlarmActivity">
+    tools:context="com.ekulelu.myalarm.AddAlarmActivity"
+    android:id="@+id/add_alarm_layout">
     <android.support.v7.widget.Toolbar
         android:id="@+id/activity_main_toolbar"
         android:layout_height="wrap_content"
@@ -31,7 +32,8 @@
                 android:text="@string/add_alarm"
                 android:textSize="25sp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"/>
 
 
                 />
@@ -43,6 +45,7 @@
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/add_alarm"
                 android:background="@color/transparent"
+                android:layout_marginEnd="10dp"
                 android:src="@mipmap/ok"
                  />
         </RelativeLayout>
@@ -53,7 +56,7 @@
         android:id="@+id/alarmModeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_main_toolbar"
+        android:layout_below="@id/activity_main_toolbar"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
        >
@@ -100,7 +103,7 @@
         android:layout_height="wrap_content"
         android:text="15:58"
         android:id="@+id/textView_time"
-        android:layout_below="@+id/alarmModeGroup"
+        android:layout_below="@id/alarmModeGroup"
         android:layout_marginStart="30dp"
         android:layout_centerHorizontal="true"
         android:textSize="45sp" />
@@ -109,7 +112,7 @@
         android:id="@+id/week_btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_time"
+        android:layout_below="@id/textView_time"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"/>
 
@@ -117,12 +120,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/week_btn_group">
+        android:layout_below="@id/week_btn_group"
+        android:id="@+id/date_layout"
+        android:layout_above="@+id/bottom_layout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date"
-            android:id="@+id/text_date"
+            android:id="@+id/text_view_date"
             android:textSize="35sp"
             android:layout_marginStart = "20dp"/>
         <ImageButton
@@ -130,22 +135,18 @@
             android:layout_height="wrap_content"
             android:id="@+id/image_button_add_date"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignTop="@+id/text_date"
-            android:layout_toEndOf="@+id/text_date"
+            android:layout_marginTop="15dp"
+            android:layout_alignTop="@+id/text_view_date"
+            android:layout_toEndOf="@+id/text_view_date"
             android:src="@mipmap/add"
             android:background="@color/transparent" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_date">
-            <!--<ListView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/listView_date"-->
+            android:layout_below="@+id/text_view_date"
+            >
 
-                <!--/>-->
             <com.ekulelu.myalarm.AddAlarmRecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,9 +156,35 @@
 
         </RelativeLayout>
 
+
     </RelativeLayout>
 
-
+    <Util.CustomCalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/date_layout"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/calendar_bg"
+         />
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tag_text"
+            android:textSize="@dimen/tag_text_size"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tag_bg" />
+    </LinearLayout>
 
 
 </RelativeLayout>

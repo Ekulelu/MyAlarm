@@ -4,16 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import android.widget.RadioButton;
 
 
 import java.util.ArrayList;
 
-import Util.MyLog;
-import butterknife.OnClick;
 
 
 
@@ -26,14 +22,14 @@ public class EKWeekButtonGroup extends FrameLayout implements View.OnClickListen
     /**
      * 用位表示选中的button。
      */
-    private int checkBtnFlag;
+    private int mCheckBtnFlag;
 
     public int getCheckBtnFlag() {
-        return checkBtnFlag;
+        return mCheckBtnFlag;
     }
 
     public void setCheckBtnFlag(int checkBtnFlag) {
-        this.checkBtnFlag = checkBtnFlag;
+        this.mCheckBtnFlag = checkBtnFlag;
         int i = 0;
         while (checkBtnFlag != 0) {
             int flag = checkBtnFlag  & 0x01;
@@ -90,28 +86,28 @@ public class EKWeekButtonGroup extends FrameLayout implements View.OnClickListen
         int id = v.getId();
         switch (id){
             case R.id.week_btn_one:
-                checkBtnFlag ^= 0x01;
+                mCheckBtnFlag ^= 0x01;
                 break;
             case R.id.week_btn_two:
-                checkBtnFlag ^= 0x02;
+                mCheckBtnFlag ^= 0x02;
                 break;
             case R.id.week_btn_three:
-                checkBtnFlag ^= 0x04;
+                mCheckBtnFlag ^= 0x04;
                 break;
             case R.id.week_btn_four:
-                checkBtnFlag ^= 0x08;
+                mCheckBtnFlag ^= 0x08;
                 break;
             case R.id.week_btn_five:
-                checkBtnFlag ^= 0x10;
+                mCheckBtnFlag ^= 0x10;
                 break;
             case R.id.week_btn_six:
-                checkBtnFlag ^= 0x20;
+                mCheckBtnFlag ^= 0x20;
                 break;
             case R.id.week_btn_seven:
-                checkBtnFlag ^= 0x40;
+                mCheckBtnFlag ^= 0x40;
                 break;
             default:
         }
-        MyLog.e("-----" + checkBtnFlag);
+//        MyLog.e("-----" + mCheckBtnFlag);
     }
 }

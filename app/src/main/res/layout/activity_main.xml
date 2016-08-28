@@ -48,9 +48,6 @@
     </android.support.v7.widget.Toolbar>
 
 
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -63,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="添加闹铃"
-            android:id="@+id/btnAddAlarm"
+            android:id="@+id/btn_main_add_alarm"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:background="#c4eac8"
@@ -73,12 +70,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="删除闹铃"
-            android:id="@+id/btnDeleteAlarm"
+            android:id="@+id/btn_main_delete_alarm"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:background="#c4eac8"
             android:onClick="btnDeleteAlarmClicked"/>
 
     </RelativeLayout>
+
+
 
 </RelativeLayout>

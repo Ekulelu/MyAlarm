@@ -33,7 +33,7 @@ public class AddAlarmListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mData.getAlarmTimes().size() *10;
+        return mData.getmAlarmDates().size();
     }
 
     @Override
@@ -58,8 +58,8 @@ public class AddAlarmListViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder)convertView.getTag();
         }
-        Calendar c = mData.getAlarmTimes().get(position%2);
-        holder.mTvTime.setText("" + (1 + c.get(Calendar.MONTH)) + " - " + c.get(Calendar.DAY_OF_MONTH));
+        EKDate d = mData.getmAlarmDates().get(position%2);
+        holder.mTvTime.setText("" + (1 + d.getMonth() + " - " + d.getDateOfMonth()));
 
         return convertView;
     }

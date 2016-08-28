@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:textSize="40sp"
-        android:layout_marginStart="90dp"
-        android:text="11-88"/>
+        android:layout_marginStart="60dp"
+        android:text="2016 - 11 - 88"/>
     <ImageButton
         android:id="@+id/add_alarm_list_item_ImaBtn_delete"
         android:layout_width="wrap_content"

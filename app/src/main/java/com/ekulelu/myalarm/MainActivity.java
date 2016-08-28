@@ -2,6 +2,7 @@ package com.ekulelu.myalarm;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -38,10 +41,20 @@ public class MainActivity extends AppCompatActivity {
         this.initActionBar();
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+//        CalendarView calendarView = (CalendarView) findViewById(R.id.calendar_view);
+//        DatePicker
     }
 
     public void btnDeleteAlarmClicked(View view){
+        Calendar c=Calendar.getInstance();
 
+        new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                MyToast.showShortText(year + ":" + monthOfYear + ":" + dayOfMonth);
+            }
+        },c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     public void btnAddAlarmClicked(View view){
@@ -63,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         },calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show();
+
+
     }
 
     public void initActionBar() {
